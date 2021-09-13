@@ -1,10 +1,32 @@
 
 body {
     background-color: rgb(97, 97, 150);
+    height: 100vh;
+    width: 100vw;
+}
+
+h1 {
+    text-align: center;
+}
+
+#btnNewBook {
+    position: relative;
+    height: 8%;
+    width: 8%;
+    background-color: rgb(255, 221, 158);
+    color: black;
+    font-size: 1.2em;
+    box-shadow: 0px 0px 4px 1px black;
+}
+
+#btnNewBook:hover {
+    background-color: rgb(253, 236, 204);
 }
 
 #bookForm {
     display: none;    
+    
+    
 }
 
 #formNewBook {
@@ -12,9 +34,9 @@ body {
     position: fixed;
     top: 50%;
     left: 50%;
-    /* bring your own prefixes */
     transform: translate(-50%, -50%);
     box-shadow: 0px 0px 4px 1px black;
+    border-radius: 5px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;    
@@ -24,11 +46,42 @@ body {
     width: 50vw;
 }
 
+label {
+    font-size: 2em;
+    color:rgb(65, 46, 146)
+}
+
 .bookInput {
     background: none;
     border: none;
     border-bottom: 2px solid black;
     width: 30%;
+    transition: all 0.3s ease-in-out;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+.bookInput:focus  {
+    width: 35%;
+}
+
+
+input.status {
+    height: 10%;
+    width: 10%;
+    border: none;
+}
+
+#submit {
+    height: 10%;
+    width: 50%;
+    background-color: rgb(228, 107, 26);
+}
+
+#submit:hover {
+    background-color: rgb(219, 146, 97);
 }
 
 #bookList {
@@ -56,4 +109,17 @@ body {
     background-color: rgb(255, 134, 134);
     border: none;
     
+}
+
+#closeForm {
+    height: 10%;
+    width: 5%;
+    background-color: rgb(248, 109, 109);
+    color: white;
+    font-size: 2em;
+    border: none;
+}
+
+#closeForm:hover {
+    background-color: rgb(252, 161, 161);
 }

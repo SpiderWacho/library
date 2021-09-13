@@ -7,25 +7,23 @@ function Book(title, author, pages, status) {
     this.status = status;
 }
 
-bible = new Book("bible", "jesus", 526, "not read");
-br = new Book("blade runner", "philip", 324, "read");
-mr = new Book("maze runner", "unknow", 130, "read");
-myLibrary.push(bible);
-myLibrary.push(br);
-myLibrary.push(mr);
-
-
-
 const btnSubmit = document.querySelector("#submit");
 const btnNewBook = document.querySelector("#btnNewBook");
 const btnCloseForm = document.querySelector("#closeForm");
+
 
 btnSubmit.addEventListener("click", function(e){
     let title = document.getElementsByName("title")[0].value;
     let author = document.getElementsByName("author")[0].value;
     let pages = document.getElementsByName("pages")[0].value;
-    let status = document.getElementsByName("status")[0].value;
-    newBook = new Book(title, author, pages, status);
+    let readStatus = ""
+    if (document.getElementsByName("status")[0].value == "on") {
+        readStatus = "Read";
+    }
+    else {
+        readStatus = "Not read";
+    }
+    newBook = new Book(title, author, pages, readStatus);
     myLibrary.push(newBook);
     e.preventDefault();
     console.log(newBook)
