@@ -1,0 +1,59 @@
+
+body {
+    background-color: rgb(97, 97, 150);
+}
+
+#bookForm {
+    display: none;    
+}
+
+#formNewBook {
+    background-color: rgb(236, 203, 159); 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+    box-shadow: 0px 0px 4px 1px black;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;    
+    justify-content: space-between;
+    align-items: center;
+    height: 50vh;
+    width: 50vw;
+}
+
+.bookInput {
+    background: none;
+    border: none;
+    border-bottom: 2px solid black;
+    width: 30%;
+}
+
+#bookList {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.bookCard {
+    width: 50vw;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: rgb(69, 69, 228);
+    margin: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+
+.removeBook {
+    height: 30px;
+    width: 40px;
+    background-color: rgb(255, 134, 134);
+    border: none;
+    
+}
