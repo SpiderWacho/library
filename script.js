@@ -12,32 +12,66 @@ const btnNewBook = document.querySelector("#btnNewBook");
 const btnCloseForm = document.querySelector("#closeForm");
 
 
-btnSubmit.addEventListener("click", function(e){
+btnSubmit.addEventListener("click", function(e){   
+    let error = false; 
     let title = document.getElementsByName("title")[0].value;
     let author = document.getElementsByName("author")[0].value;
     let pages = document.getElementsByName("pages")[0].value;
+    let status = document.getElementsByName("status")[0].checked;
+    if (title == "" || author == "" || pages == "") {
+        error = true;
+    }
     let readStatus = ""
-    if (document.getElementsByName("status")[0].value == "on") {
+    if (status === true) {
         readStatus = "Read";
     }
     else {
         readStatus = "Not read";
     }
-    newBook = new Book(title, author, pages, readStatus);
-    myLibrary.push(newBook);
+    if (!error) {
+        newBook = new Book(title, author, pages, readStatus);
+        myLibrary.push(newBook);
+        document.getElementById("title").value = "";
+        document.getElementById("author").value = "";
+        document.getElementById("pages").value = "";
+        document.getElementById("status").checked = false;
+        closeForm();
+        displayBooks(); 
+        console.log(title);
+    }
+    else {
+        form = document.querySelector("#formNewBook");
+        errors = document.querySelectorAll(".errorMsg")
+        if (errors != null) {
+            errors.forEach(error => { 
+                error.remove();
+            });
+        }
+        if (title == "") {
+            let alert = document.createElement("p");
+            alert.textContent = "Title can't be empty"
+            form.appendChild(alert);
+            alert.classList.add("errorMsg")
+        }
+        if (author == "") {
+            let alert = document.createElement("p");
+            alert.textContent = "Author can't be empty"
+            form.appendChild(alert);
+            alert.classList.add("errorMsg")
+        }
+        if (Number.isInteger(pages) == false)  {
+            let alert = document.createElement("p");
+            alert.textContent = "Invalid number"
+            form.appendChild(alert);
+            alert.classList.add("errorMsg")
+        } 
+    }
     e.preventDefault();
-    console.log(newBook)
-    document.getElementById("title").value = "";
-    document.getElementById("author").value = "";
-    document.getElementById("pages").value = "";
-    document.getElementById("status").checked = false;
-    displayBooks();
-    
 });
 
 
 const bookList = document.querySelector("#bookList");
-function removeBooks(){ 
+function clearBooks(){ 
     if (bookList.hasChildNodes() === true){
         while (bookList.firstChild) {
             bookList.removeChild(bookList.lastChild);
@@ -46,9 +80,8 @@ function removeBooks(){
 }
 
 function displayBooks() {
-    closeForm();
     if (bookList.hasChildNodes() === true){
-        removeBooks;
+        clearBooks();
     }
         let j = myLibrary.length;
         for (let i = 0; i < j; i++) {     
@@ -61,6 +94,8 @@ function displayBooks() {
             let newBtn = document.createElement("button");
             newBtn.classList.add("removeBook");
             newBtn.textContent = "X";
+            newBtn.setAttribute('data-index', i);
+            newBtn.addEventListener("click", removeBook);
             newTitle.textContent = myLibrary[i].title;
             newAuthor.textContent = myLibrary[i].author;
             newPageNumber.textContent = myLibrary[i].pages;
@@ -71,26 +106,49 @@ function displayBooks() {
             newDiv.appendChild(newPageNumber);
             newDiv.appendChild(newStatus);
             newDiv.appendChild(newBtn);
+            
         }
 }
 
-function openForm() {
+function clearBooks() {
     if (bookList.hasChildNodes() === true){
         while (bookList.firstChild) {
             bookList.removeChild(bookList.lastChild);
           };
-    document.getElementById("bookForm").style.display = "block";
     }
 }
+
+
+function openForm() {
+    clearBooks;
+    document.getElementById("bookForm").style.display = "block";
+}
+
   
 function closeForm(e) {
     document.getElementById("bookForm").style.display = "none";
     if (e != undefined) {
         e.preventDefault();
     }
+    if (bookList.hasChildNodes() === false) {
+        displayBooks;
+    }
 } 
 
+function removeBook(e) {
+    let index = e.target.getAttribute("data-index");
+    myLibrary.splice(index, 1);
+    clearBooks();
+    displayBooks();
+    console.log(myLibrary);
+}
+
+
+
 btnNewBook.addEventListener("click", openForm);
-btnCloseForm.addEventListener("click", closeForm);   
+btnCloseForm.addEventListener("click", closeForm);
+
+
+
 
 
