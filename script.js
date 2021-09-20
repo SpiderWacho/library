@@ -37,7 +37,7 @@ btnSubmit.addEventListener("click", function(e){
         document.getElementById("status").checked = false;
         closeForm();
         displayBooks(); 
-        console.log(title);
+
     }
     else {
         form = document.querySelector("#formNewBook");
@@ -87,26 +87,35 @@ function displayBooks() {
         for (let i = 0; i < j; i++) {     
             let newDiv = document.createElement("div");
             newDiv.classList.add("bookCard");
+            
             let newTitle = document.createElement("p");
+            newTitle.textContent = myLibrary[i].title;
+            newTitle.classList.add("titles");
+
             let newAuthor = document.createElement("p");
+            newAuthor.textContent = myLibrary[i].author;
+            newAuthor.classList.add("authors");
+            
             let newPageNumber = document.createElement("p");
+            newPageNumber.textContent = myLibrary[i].pages;
+            newPageNumber.classList.add("pages");
+            
             let newStatus = document.createElement("p");
+            newStatus.classList.add("status");
+            newStatus.textContent = myLibrary[i].status;
+            
             let newBtn = document.createElement("button");
             newBtn.classList.add("removeBook");
             newBtn.textContent = "X";
             newBtn.setAttribute('data-index', i);
             newBtn.addEventListener("click", removeBook);
-            newTitle.textContent = myLibrary[i].title;
-            newAuthor.textContent = myLibrary[i].author;
-            newPageNumber.textContent = myLibrary[i].pages;
-            newStatus.textContent = myLibrary[i].status;
+            
             bookList.appendChild(newDiv);
             newDiv.appendChild(newTitle);
             newDiv.appendChild(newAuthor);
             newDiv.appendChild(newPageNumber);
             newDiv.appendChild(newStatus);
             newDiv.appendChild(newBtn);
-            
         }
 }
 
@@ -142,8 +151,6 @@ function removeBook(e) {
     displayBooks();
     console.log(myLibrary);
 }
-
-
 
 btnNewBook.addEventListener("click", openForm);
 btnCloseForm.addEventListener("click", closeForm);

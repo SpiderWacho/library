@@ -6,10 +6,15 @@
         <title>Library</title>
     </head>
     <body>
-        <h1>Booklist</h1>
+        <h1>Personal Booklist</h1>
+        <div id="button">
         <button id="btnNewBook">Add a book</button>
+        </div>
         <div id="bookForm">
         <form id="formNewBook">
+            <div id="closeBtn">
+            <button id="closeForm">X</button>
+            </div>
             <label for="title"><b>Title</b></label>
             <input type="text" id="title" class="bookInput" name="title" placeholder="Title of the book">
 
@@ -21,8 +26,8 @@
 
             <label for="status"><b>Read</b></label>
             <input type="checkbox" class="status" id="status" name="status">
-            <button id="submit">Submit</button>
-            <button id="closeForm">X</button>
+            
+            <button id="submit">Submit</button>           
         </div>
         <div id="bookList">
         </div>

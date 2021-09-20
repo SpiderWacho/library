@@ -1,4 +1,8 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Yanone+Kaffeesatz:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@700&family=Yanone+Kaffeesatz&display=swap');
+
+
 body {
     background-color: rgb(97, 97, 150);
     height: 100vh;
@@ -7,16 +11,28 @@ body {
 
 h1 {
     text-align: center;
+    font-size: 6em;
+    font-family: 'Bebas Neue', cursive;
+}
+
+#button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 10vh;
+    
 }
 
 #btnNewBook {
-    position: relative;
-    height: 8%;
-    width: 8%;
+    
+    height: 80%;
+    width: 30%;
     background-color: rgb(255, 221, 158);
     color: black;
-    font-size: 1.2em;
+    font-size: 3em;
     box-shadow: 0px 0px 4px 1px black;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
 }
 
 #btnNewBook:hover {
@@ -25,17 +41,15 @@ h1 {
 
 #bookForm {
     display: none;    
-    
-    
 }
 
 #formNewBook {
-    background-color: rgb(236, 203, 159); 
-    position: fixed;
+    background-color: rgb(240, 179, 100); 
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    box-shadow: 0px 0px 4px 1px black;
+    box-shadow: 0px 0px 4px 2px black;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
@@ -43,11 +57,29 @@ h1 {
     justify-content: space-between;
     align-items: center;
     height: 50vh;
-    width: 50vw;
+    width: 60vw;
+}
+
+#closeBtn {
+    width: 100%;
+    height: 7%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#closeForm {
+    height: 100%;
+    width: 10%;
+    background-color: rgb(248, 109, 109);
+    color: black;
+    font-size: 2em;
+    border: none;
 }
 
 label {
-    font-size: 2em;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    margin: 20px 0px 0px 0px;
+    font-size: 3em;
     color:rgb(65, 46, 146)
 }
 
@@ -55,8 +87,9 @@ label {
     background: none;
     border: none;
     border-bottom: 2px solid black;
-    width: 30%;
-    transition: all 0.3s ease-in-out;
+    width: 40%;
+    transition: all 0.2s ease-in-out;
+    font-size: 1.5em;
 }
 
 textarea:focus, input:focus{
@@ -64,24 +97,37 @@ textarea:focus, input:focus{
 }
 
 .bookInput:focus  {
-    width: 35%;
+    width: 55%;
 }
 
 
 input.status {
-    height: 10%;
-    width: 10%;
+    height: 7%;
+    width: 7%;
     border: none;
+    color: black;   
 }
 
 #submit {
     height: 10%;
     width: 50%;
     background-color: rgb(228, 107, 26);
+    font-size: 2em;
+}
+
+.errorMsg {
+    font-size: 1.5em;
+    color: red;
+    max-width: 1000px;
+
 }
 
 #submit:hover {
     background-color: rgb(219, 146, 97);
+}
+
+#closeForm:hover {
+    background-color: rgb(252, 161, 161);
 }
 
 #bookList {
@@ -91,35 +137,99 @@ input.status {
 }
 
 .bookCard {
-    width: 50vw;
+    width: 80vw;
+    height: 5vh;   
     border: 2px solid black;
     border-radius: 5px;
     background-color: rgb(69, 69, 228);
-    margin: 5px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    align-items: center;
+    margin: 5%;
+    font-size: 1.8em;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
 
+.titles {
+    width: 100%;
+    text-align: center;
+}
+
+.authors {
+    width: 100%;
+    text-align: center;
+}
+
+.status {
+    width: 100%;
+    text-align: center;
+}
+
+.pages {
+
+    width: 100%;
+    text-align: center;
+}
+
+
+
+p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
 }
 
 .removeBook {
-    height: 30px;
-    width: 40px;
+    height: 50%;
+    width: 35%;
+    margin: auto;   
+    text-align: center;
     background-color: rgb(255, 134, 134);
     border: none;
+    font-size: 1em;
+}
+
+@media (min-width: 1000px) {
+    #formNewBook {
+        background-color: rgb(240, 179, 100); 
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 0px 0px 4px 2px black;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;    
+        justify-content: space-between;
+        align-items: center;
+        height: 90vh;
+        width: 60vw;
+    }
+
+    .bookCard {
+        width: 80vw;
+        height: 15vh;   
+        border: 2px solid black;
+        border-radius: 5px;
+        background-color: rgb(69, 69, 228);
+        margin: 1%;
+        font-size: 2.4em;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        font-family: 'Yanone Kaffeesatz', sans-serif;
+    }
+
+    .removeBook {
+        height: 40%;
+        width: 20%;
+        margin: auto;   
+        text-align: center;
+        background-color: rgb(255, 134, 134);
+        border: none;
+        font-size: 0.7em;
+    }
     
+
+
 }
 
-#closeForm {
-    height: 10%;
-    width: 5%;
-    background-color: rgb(248, 109, 109);
-    color: white;
-    font-size: 2em;
-    border: none;
-}
-
-#closeForm:hover {
-    background-color: rgb(252, 161, 161);
-}
