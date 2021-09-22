@@ -37,7 +37,6 @@ btnSubmit.addEventListener("click", function(e){
         document.getElementById("status").checked = false;
         closeForm();
         displayBooks(); 
-
     }
     else {
         form = document.querySelector("#formNewBook");
@@ -87,6 +86,7 @@ function displayBooks() {
         for (let i = 0; i < j; i++) {     
             let newDiv = document.createElement("div");
             newDiv.classList.add("bookCard");
+            newDiv.setAttribute('data-index', i);
             
             let newTitle = document.createElement("p");
             newTitle.textContent = myLibrary[i].title;
@@ -103,6 +103,12 @@ function displayBooks() {
             let newStatus = document.createElement("p");
             newStatus.classList.add("status");
             newStatus.textContent = myLibrary[i].status;
+            if (newStatus.textContent == "Read") {
+                newStatus.style.backgroundColor = "rgb(2, 83, 2)";
+            }
+            else {
+                newStatus.style.backgroundColor = "rgb(173, 17, 17)";
+            }
             
             let newBtn = document.createElement("button");
             newBtn.classList.add("removeBook");
@@ -117,6 +123,8 @@ function displayBooks() {
             newDiv.appendChild(newStatus);
             newDiv.appendChild(newBtn);
         }
+    let statusBtn = document.querySelectorAll(".status");
+    statusBtn.forEach(btn => btn.addEventListener("click", changeStatus));
 }
 
 function clearBooks() {
@@ -128,9 +136,12 @@ function clearBooks() {
 }
 
 
+
+
 function openForm() {
     clearBooks;
     document.getElementById("bookForm").style.display = "block";
+    document.querySelector("#overlay").style.display = "block";
 }
 
   
@@ -142,6 +153,7 @@ function closeForm(e) {
     if (bookList.hasChildNodes() === false) {
         displayBooks;
     }
+    document.querySelector("#overlay").style.display = "none";
 } 
 
 function removeBook(e) {
@@ -149,11 +161,31 @@ function removeBook(e) {
     myLibrary.splice(index, 1);
     clearBooks();
     displayBooks();
-    console.log(myLibrary);
 }
+
+let currentStatus = "";
+function changeStatus(e) {
+    console.log("changed");
+    let target = e.target;
+    let parent = target.parentElement;
+    let index = parent.getAttribute("data-index");
+    if (myLibrary[index].status == "Read") {
+        myLibrary[index].status = "Not read"
+        target.textContent = myLibrary[index].status;
+        target.style.backgroundColor = "rgb(173, 17, 17)";
+    }
+    else if (myLibrary[index].status == "Not read") {
+        myLibrary[index].status = "Read";
+        e.textContent = myLibrary[index].status;
+        target.textContent = myLibrary[index].status;
+        target.style.backgroundColor = "rgb(2, 83, 2)";
+    }
+}
+
 
 btnNewBook.addEventListener("click", openForm);
 btnCloseForm.addEventListener("click", closeForm);
+
 
 
 
