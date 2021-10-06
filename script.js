@@ -1,4 +1,14 @@
-let myLibrary = [];
+ 
+let library = JSON.parse(localStorage.getItem("myLibrary") || "[]");
+
+const bookList = document.querySelector("#bookList");
+
+if (library.lenght == 0 ) {
+    let myLibrary = [];}
+else {
+    myLibrary = library;
+    displayBooks();
+}
 
 function Book(title, author, pages, status) {    
     this.title = title;
@@ -31,6 +41,7 @@ btnSubmit.addEventListener("click", function(e){
     if (!error) {
         newBook = new Book(title, author, pages, readStatus);
         myLibrary.push(newBook);
+        window.localStorage.setItem("myLibrary", JSON.stringify(myLibrary)); 
         document.getElementById("title").value = "";
         document.getElementById("author").value = "";
         document.getElementById("pages").value = "";
@@ -69,7 +80,7 @@ btnSubmit.addEventListener("click", function(e){
 });
 
 
-const bookList = document.querySelector("#bookList");
+
 function clearBooks(){ 
     if (bookList.hasChildNodes() === true){
         while (bookList.firstChild) {
@@ -122,6 +133,7 @@ function displayBooks() {
             newDiv.appendChild(newPageNumber);
             newDiv.appendChild(newStatus);
             newDiv.appendChild(newBtn);
+          
         }
     let statusBtn = document.querySelectorAll(".status");
     statusBtn.forEach(btn => btn.addEventListener("click", changeStatus));
@@ -159,6 +171,7 @@ function closeForm(e) {
 function removeBook(e) {
     let index = e.target.getAttribute("data-index");
     myLibrary.splice(index, 1);
+    window.localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
     clearBooks();
     displayBooks();
 }
@@ -181,7 +194,6 @@ function changeStatus(e) {
         target.style.backgroundColor = "rgb(2, 83, 2)";
     }
 }
-
 
 btnNewBook.addEventListener("click", openForm);
 btnCloseForm.addEventListener("click", closeForm);
