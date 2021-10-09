@@ -1,6 +1,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Yanone+Kaffeesatz:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@700&family=Yanone+Kaffeesatz&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap');
 
 
 #overlay {
@@ -21,7 +22,7 @@ body {
 
 h1 {
     text-align: center;
-    font-size: 6em;
+    font-size: 4em;
     font-family: 'Bebas Neue', cursive;
     color: white;
     margin: 2%;
@@ -32,16 +33,16 @@ h1 {
     justify-content: center;
     align-items: center;
     width: 100vw;
-    height: 25vh;
+    height: 12vh;
     margin: auto;
-    
 }
 
 #btnNewBook {
     
-    height: 60%;
-    width: 70%;
-    background-color: #FF0000;
+    height: 70%;
+    width: 40%;
+    max-width: 300px;
+    background-color: #bb0808;
     color: black;
     font-size: 3em;
     box-shadow: 0px 0px 4px 1px black;
@@ -50,7 +51,7 @@ h1 {
 }
 
 #btnNewBook:hover {
-    background-color: rgb(129, 129, 129);
+    background-color: #b43d3d;
 }
 
 #bookForm {
@@ -70,13 +71,13 @@ h1 {
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
-    height: 90vh;
-    width: 90vw;
+    height: 100vh;
+    width: 100vw;
 }
 
 #closeBtn {
     width: 100%;
-    height: 5%;
+    height: 10%;
     display: flex;
     justify-content: flex-end;
     text-align: center;
@@ -84,7 +85,9 @@ h1 {
 
 #closeForm {
     height: 100%;
+    max-height: 70px;
     width: 10%;
+    max-width: 70px;
     background-color: rgb(129, 0, 0);
     color: black;
     font-size: 2em;
@@ -95,7 +98,7 @@ h1 {
 label {
     font-family: 'Yanone Kaffeesatz', sans-serif;
     margin: 5px 0px 0px 0px;
-    font-size: 2em;
+    font-size: 4em;
     color:rgb(255, 255, 255)
 }
 
@@ -106,7 +109,7 @@ label {
     border-bottom: 2px solid black;
     width: 70%;
     transition: all 0.2s ease-in-out;
-    font-size: 1em;
+    font-size: 2em;
 }
 
 textarea:focus, input:focus{
@@ -129,6 +132,7 @@ input.status {
 #submit {
     height: 10%;
     width: 50%;
+    max-width: 350px;
     background-color: rgb(56, 64, 165);
     font-size: 2em;
     border: none;
@@ -164,7 +168,8 @@ input.status {
     border-radius: 5px;
     background-color: rgb(28, 28, 94);
     margin: 5%;
-    font-size: 1.8em;
+    font-size: 2em;
+    font-family: 'Lato', sans-serif;
     display: grid;
     grid-template-rows:  repeat(5, 1fr);
 }
@@ -182,7 +187,8 @@ input.status {
 }
 
 .status {
-    width: 50%;
+    width: 55%;
+    max-width: 300px;
     text-align: center;
     box-shadow: 0px 0px 3px 1px black, 0px 0px 1px 1px black;
     margin: auto;
@@ -207,34 +213,73 @@ p {
 
 .removeBook {
     height: 70%;
+    max-height: 70px;
     width: 10%;
+    max-width: 70px;
     margin: auto;   
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
     background-color: rgb(173, 17, 17);
     border: none;
-    font-size: 1em;
+    font-size: 0.6em;
     box-shadow: 0px 0px 3px 1px black, 0px 0px 1px 1px black;
 }
        
-@media (min-width: 720px) {
-  #formNewBook {
-    width: 90vw;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-      
-  }
-  
-  label {
-    margin: 1%;
+@media (min-width: 768px){
+
+    #formNewBook {
+        font-size: 0.9em;
+        width: 80vw;
+    }
+
+    .bookInput {
+        width: 60%;
+    }
+
+    .bookInput:focus {
+        width: 65%;
+    }
     
-  }
-  .bookInput {
-    margin: 1%;
-    width: 40%;
-  }
-  
-  input.status {
-    margin: 1%;
-  }
+}
+
+@media (min-width: 1024px){
+    h1 {
+        font-size: 7em;
+    }
+    
+    #formNewBook {
+        width: 50vw;
+    }
+
+    .bookCard {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+        font-size: 3em;
+    }
+
+    .titles {
+        width: 20%;
+    }
+    
+    .authors {
+        width: 20%;
+    }
+    
+    .status {
+        width: 20%;
+    }
+    
+    .pages {
+    
+        width: 20%;
+    }
+
+    p {
+        white-space: initial;
+        overflow: hidden;
+        max-width: 800px;
+    }
 }
